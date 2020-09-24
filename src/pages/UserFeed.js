@@ -24,6 +24,7 @@ class UserFeed extends React.Component {
             <div className="UserFeed">
                 <Menu isAuthenticated={this.props.isAuthenticated}/>
                 <UserList users={this.state.users}/>
+                
             </div>
         )
     }
