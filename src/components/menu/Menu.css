@@ -8,7 +8,11 @@
   border-radius: .5em;
 }
 
-.Menu h1 {font-family: 'Ranchers', cursive;
+.Menu h1 {
+  font-family: 'Ranchers', cursive;
+  background-color: none;
+  color: black
+
 }
 
 .logo, .Menu h1 {
@@ -19,14 +23,3 @@ button a {
   color: white
 }
 
-/* #menu-links {
-  display: flex;
-  padding-left: 1em;
-} */
-
-/* #menu-links a {
-  padding-right: 0.5em;
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-} */
