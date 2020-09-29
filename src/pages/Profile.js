@@ -131,18 +131,7 @@ class Profile extends React.Component {
           <button onClick={this.handleSubmitPhoto}>Save Change</button>
         </form>
 
-
-
-        {/* <Button color="orange" content='Change Photo' primary /> */}
-
-
-
-
-        {/* <Button >
-
-          <input type="file" accept="image/*" id="file-input" /> 
-
-        </Button> */}
+        
         <hr/>
         <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
           <Button content='Update My Info' primary />
