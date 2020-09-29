@@ -7,6 +7,7 @@ import { Segment } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { userIsAuthenticated } from "../redux/HOCs";
+import Webcam from 'webcam-easy';
 
 
 class Profile extends React.Component {
@@ -27,7 +28,9 @@ class Profile extends React.Component {
       "statusCode": "",
       picture: null
 
+
     }
+
 
   }
   componentDidMount() {
@@ -51,6 +54,21 @@ class Profile extends React.Component {
           user: userData.user,
           statusCode: userData.statusCode,
           pictureLocation: userData.user.pictureLocation
+
+        })
+      })
+    })
+  }
+  handleSubmitCameraPhoto = (event) => {
+    console.log("HI!!!")
+    event.preventDefault()
+    let formData = this.fileUpload(this.state.picture)
+    this.client.setUserPicture(this.state.user.username, formData).then(() => {
+      this.client.getUser(this.props.match.params.username).then((userData) => {
+        this.setState({
+          user: userData.user,
+          statusCode: userData.statusCode,
+          pictureLocation: userData.user.canvasElement
 
         })
       })
@@ -89,10 +107,11 @@ class Profile extends React.Component {
           />
         </div>
       )
-    } else {
+    } 
+    else {
       return (
         <div>
-          <img src='https://i0.wp.com/theregister.co.nz/wp-content/uploads/converted_files/tumb/images/longform/shutterstock_1059853814-scaled.jpg?resize=1200%2C800&ssl=1'
+          <img src='https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png'
             height='200 px'
             width='200 px'
           />
@@ -100,6 +119,26 @@ class Profile extends React.Component {
       )
 
     }
+  }
+  webcame = () => {
+    const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const webcam = new Webcam(webcamElement, 'user', canvasElement);
+    webcam.start()
+      .then(result => {
+        console.log("webcam started");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    let picture = webcam.snap();
+    this.fileUpload(picture)
+    //document.querySelector('#download-photo').href = picture;
+    
+    webcam.stop()
+    return picture
+
+
   }
 
 
@@ -119,7 +158,7 @@ class Profile extends React.Component {
         </Segment>
 
 
-        <form onSubmit={this.handleSubmitPhoto}>
+        <form onSubmit={this.handleSubmitPhoto +this.handleSubmitCameraPhoto}>
 
           <input
 
@@ -131,22 +170,32 @@ class Profile extends React.Component {
           <button onClick={this.handleSubmitPhoto}>Save Change</button>
         </form>
 
-
-
-        {/* <Button color="orange" content='Change Photo' primary /> */}
-
-
-
-
-        {/* <Button >
-
-          <input type="file" accept="image/*" id="file-input" /> 
-
-        </Button> */}
-        <hr/>
+        <hr />
         <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
           <Button content='Update My Info' primary />
         </Link>
+<hr/>
+<Button color ="blue" onClick={this.webcame}> Take photo</Button>
+        <video id="webcam" autoplay playsinline width="200" height="200"></video>
+        <canvas id="canvas" class="d-none"></canvas> 
+        <hr/>
+        <button onClick={this.handleSubmitCameraPhoto}>Save from camera </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <p> Display Name:  {"@" + this.state.user.displayName}</p>
         <p> Useername:  {this.state.user.username}</p>

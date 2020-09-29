@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from 'semantic-ui-react';
+import "./UpdateProfileForm.css"
 
 
 
@@ -36,8 +37,9 @@ function UpdateProfileForm(props) {
             />
 </div>
 <hr/>
-            <Button secondary type="submit" onClick={props.handleUpdateProfile}> Update my Profile </Button>
-        
+<Button color="red" >
+            <button color = "blue"  secondary type="submit"  onClick={props.handleUpdateProfile }> Update my Profile </button>     
+                </Button>
 
         </form>
     )

@@ -183,6 +183,18 @@ class FetchService {
     
         }
     
+//========SetWebcame==========================
+// setwebcame(username, pictureObject) {
+//     let URL = this.domain + "/users/" + username + "/picture";
+//     let token = JSON.parse(localStorage.getItem('login')).result.token;
+
+//     return fetch(URL, {
+//         method: "PUT",
+//         headers: { 'Authorization': 'Bearer ' + token },
+//         body: pictureObject
+//     })
+//         .then(response => response.json())
+//}
 
 }
 
