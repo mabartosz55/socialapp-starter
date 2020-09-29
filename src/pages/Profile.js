@@ -5,6 +5,7 @@ import FetchService from "../FetchService";
 // import Noimage from "../components/images/Noimage"
 
 import { Segment } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { userIsAuthenticated } from "../redux/HOCs";
@@ -84,8 +85,8 @@ class Profile extends React.Component {
       return (
         <div>
           <img src={'https://socialapp-api.herokuapp.com' + this.state.user.pictureLocation}
-            height='200 px'
-            width='200 px'
+            height='350 px'
+            width='350 px'
           />
         </div>
       )
@@ -108,53 +109,82 @@ class Profile extends React.Component {
     return (
       <div className="Profile">
         <Menu isAuthenticated={this.props.isAuthenticated} />
-        <h2>My Current Profile</h2>
-        <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
 
 
-        <Segment>
-
-          {this.pictureFile()}
-
-        </Segment>
+        <Segment textAlign="center">
+          <h2>My Current Profile</h2>
+          <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
 
 
-        <form onSubmit={this.handleSubmitPhoto}>
+          <Segment>
 
-          <input
+            {this.pictureFile()}
 
-            name="picture"
-            type="file"
-            accept="image/png, image/jpeg, image/gif"
-            onChange={this.onFileChange}
-          />
-          <button onClick={this.handleSubmitPhoto}>Save Change</button>
-        </form>
+          </Segment>
 
 
+          <form onSubmit={this.handleSubmitPhoto}>
 
-        {/* <Button color="orange" content='Change Photo' primary /> */}
+            <Button color= 'blue'>
+
+            <input
+           
+
+              name="picture"
+              type="file"
+              accept="image/png, image/jpeg, image/gif"
+              onChange={this.onFileChange}
+
+              
+            />
+</Button>
+            <Button onClick={this.handleSubmitPhoto} inverted color='orange'   >Save Change</Button>
+
+
+          </form>
+
+
+
+          {/* <Button color="orange" content='Change Photo' primary /> */}
 
 
 
 
-        {/* <Button >
+          {/* <Button >
 
           <input type="file" accept="image/*" id="file-input" /> 
 
         </Button> */}
-        <hr/>
-        <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
-          <Button content='Update My Info' primary />
-        </Link>
+          <hr />
+          <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
+            <Segment inverted>
 
-        <p> Display Name:  {"@" + this.state.user.displayName}</p>
-        <p> Useername:  {this.state.user.username}</p>
-        <p> About:  {this.state.user.about}</p>
-        <p> Profile created:  {this.state.user.createdAt}</p>
-        <p> Profile updated:  {this.state.user.updatedAt}</p>
-        <p> ImagePath:  {this.state.user.pictureLocation}</p>
 
+
+              <Button inverted color='red'> Update My Info</Button>
+
+            </Segment>
+
+          </Link>
+          <Segment textAlign="center"  >
+            <Card>
+              <p><strong>Display Name:</strong>   {"@" + this.state.user.displayName}</p>
+              <p> <strong>Username:</strong>  {this.state.user.username}</p>
+            </Card>
+            <Card>
+              <p><strong>About:</strong>   {this.state.user.about}</p>
+
+            </Card>
+
+            <Card>
+              <p> <strong>Profile created:</strong>  {this.state.user.createdAt}</p>
+              <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt}</p>
+
+            </Card>
+
+          </Segment>
+
+        </Segment>
       </div>
     );
   }
