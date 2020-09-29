@@ -52,5 +52,15 @@ code {
 }
 .ui.list{
   margin-top:80px;
+  text-align: left;
+  
+}
+h1.MeetMembers{
+  color: rgb(29, 110, 5);
+  font-style: italic;
+  font-family: oleo script;
+  margin-left: 150px;
+  font-size:50px;
+  margin-top: 50px;
   
 }

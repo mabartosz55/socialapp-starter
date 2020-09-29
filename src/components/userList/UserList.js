@@ -9,7 +9,8 @@ import { displayName } from 'react-spinkit'
 class UserList extends React.Component {
     render() {
         return (
-            <List className='UserList'>{this.props.users.map((userObj, i) => {
+            <div className='auto_scroll'>
+            <List className='UserList' size='massive' color='green'>{this.props.users.map((userObj, i) => {
 
                 return <UserItem
                     key={i}
@@ -19,7 +20,9 @@ class UserList extends React.Component {
                     picture={userObj.pictureLocation}
                 />
             })}
-            </List>
+
+        </List>
+        </div>
         )
     }
 }
