@@ -1,47 +1,66 @@
 import React from "react";
-import { Button } from 'semantic-ui-react';
-
-
+import {Button, Container, Divider, Grid, Header, Image, Menu, 
+    Dimmer, Segment, Card, Form,  Input} from 'semantic-ui-react';
 
 function UpdateProfileForm(props) {
 
     return (
 
-        <form id="profile-form">
-            <hr/>
-<div height >
-            <label htmlFor="displayname">Display Name</label>
-            <input
-                type="text"
-                name="displayName"
-                required
-                value={props.formData.displayName}
-                onChange={props.handleChange}
-            />
-            <h5> Disply name is the name that will be appeard in your profile</h5>
+        <Form id="profile-form">
+            <hr />
+            <div height >
+
+         
+
+                    <label htmlFor="displayname"><strong>  Display Name  </strong></label>
+                    <Input fluid icon='icon' placeholder='This is the name that will be appeard in your profile'/>
+                    <input
+                        type="text"
+                        name="displayName"
+                        required
+                        value={props.formData.displayName}
+                        onChange={props.handleChange}
+                    />
+                
+
+                
+            </div>
+            <hr />
+
+            <div>
+            
+                <label htmlFor="about" ><strong>Tell us about yourself:</strong> </label>
+
+                 <Input fluid icon='icon' placeholder='Who exactly are you?'/>
+                <input
+                    type="text"
+                    height='500 px'
+                    width='900 px'
+                    name="about"
+                    value={props.formData.about}
+                    onChange={props.handleChange}
+                />
+
+ 
+
+                
+            </div>
+            <hr />
+    <Segment inverted> 
+    <card>    
+           <Button inverted color = 'olive' onClick={props.handleUpdateProfile}> Update my Profile 
+            </Button>
+            </card> 
+
+                       </Segment>      
+                       
+
+        </Form>
 
 
-</div>
-<hr/>
 
-<div>
-            <label htmlFor="about">About: </label>
-            <input
-                type="text"
-                height='200 px'
-                width='200 px'
-                name="about"
-                value={props.formData.about}
-                onChange={props.handleChange}
-            />
-</div>
-<hr/>
-            <Button secondary type="submit" onClick={props.handleUpdateProfile}> Update my Profile </Button>
-        
-
-        </form>
     )
 }
-    
+
 
 export default UpdateProfileForm;

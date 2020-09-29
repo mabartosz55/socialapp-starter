@@ -3,7 +3,7 @@ import React from "react";
 import Menu from "../components/menu/Menu";
 import FetchService from "../FetchService";
 
-import { Segment } from 'semantic-ui-react'
+import { Form, Segment } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { userIsAuthenticated } from "../redux/HOCs";
@@ -60,15 +60,8 @@ class Profile extends React.Component {
             width='200 px'
           />
         </Segment> 
-        
-        
-        
-        
-        
+         
         <Button color="orange" content ='Change Photo' primary />
-       
-
-        
         
         <Button >
 
@@ -80,7 +73,7 @@ class Profile extends React.Component {
         </Link>
 
         <p> Display Name:  {"@" + this.state.user.displayName}</p>
-        <p> Useername:  {this.state.user.username}</p>
+        <p> Username:  {this.state.user.username}</p>
         <p> About:  {this.state.user.about}</p>
         <p> Profile created:  {this.state.user.createdAt}</p>
         <p> Profile updated:  {this.state.user.updatedAt}</p>
