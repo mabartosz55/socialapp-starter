@@ -120,6 +120,7 @@ class Profile extends React.Component {
 
     }
   }
+
   webcame = () => {
     const webcamElement = document.getElementById('webcam');
     const canvasElement = document.getElementById('canvas');
@@ -132,13 +133,14 @@ class Profile extends React.Component {
         console.log(err);
       });
     let picture = webcam.snap();
-    this.fileUpload(picture)
+
+    console.log(picture.toBlob())
+    //this.fileUpload(picture)
+    this.setState({picture:picture})
     //document.querySelector('#download-photo').href = picture;
     
-    webcam.stop()
-    return picture
-
-
+   // webcam.stop()
+   // return picture
   }
 
 
@@ -180,20 +182,6 @@ class Profile extends React.Component {
         <canvas id="canvas" class="d-none"></canvas> 
         <hr/>
         <button onClick={this.handleSubmitCameraPhoto}>Save from camera </button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
