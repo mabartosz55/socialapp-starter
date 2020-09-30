@@ -64,3 +64,18 @@ h1.MeetMembers{
   margin-top: 50px;
   
 }
+
+.cardClass {
+  margin: auto;
+  width : 500px;
+  padding: 2px 10px 2px 10px;
+  border: 1px solid lightgrey;
+ 
+  color: blue;
+  border-radius: 10px;
+}
+.updateProfileClass {
+  margin: auto;
+  padding: 40px 50px 2px 50px;
+  /* border: 1px solid red; */
+}
