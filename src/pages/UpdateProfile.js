@@ -95,9 +95,9 @@ class UpdateProfile extends React.Component {
 
     handleDeleteProfile = (event) => {
         let token = JSON.parse(localStorage.getItem('login')).result.token;
-       
+
         this.props.logout()
-        .then(this.client.deleteUser(this.state.user.username, token))
+            .then(this.client.deleteUser(this.state.user.username, token))
     }
 
 
@@ -143,12 +143,12 @@ class UpdateProfile extends React.Component {
 
                 {result_message}
 
-                <br/>
+                <br />
                 <Button color="blue">
                     <Link to={"/profile/" + this.props.match.params.username}>Go to My Profile</Link>
-                    </Button>
+                </Button>
                 <br />
-                <br/>
+                <br />
                 <Button color="red" onClick={this.handleDeleteProfile}><Link to="/">Delete Profile</Link></Button>
 
             </div >
