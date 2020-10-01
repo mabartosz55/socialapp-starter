@@ -6,7 +6,7 @@ import { userIsAuthenticated } from "../redux/HOCs";
 import { withAsyncAction } from "../redux/HOCs"
 import { Link } from 'react-router-dom';
 import UpdateProfileForm from '../components/updateProfileForm/UpdateProfileForm'
-
+import "../index.css";
 import FetchService from "../FetchService";
 
 class UpdateProfile extends React.Component {
@@ -95,9 +95,9 @@ class UpdateProfile extends React.Component {
 
     handleDeleteProfile = (event) => {
         let token = JSON.parse(localStorage.getItem('login')).result.token;
-       
+
         this.props.logout()
-        .then(this.client.deleteUser(this.state.user.username, token))
+            .then(this.client.deleteUser(this.state.user.username, token))
     }
 
 
@@ -131,26 +131,29 @@ class UpdateProfile extends React.Component {
             <div className="UpdateProfile">
 
                 <Menu isAuthenticated={this.props.isAuthenticated} />
-                <h2>Update My Profile</h2>
-                <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
+                <div className="updateProfileClass">
+                {/* <br /> */}
+                    <h2>Update My Profile</h2>
+                    <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
 
-                <UpdateProfileForm
-                    formData={this.state.formData}
-                    handleChange={this.handleChange}
-                    handleUpdateProfile={this.handleUpdateProfile}
 
-                />
+                    <UpdateProfileForm
+                        formData={this.state.formData}
+                        handleChange={this.handleChange}
+                        handleUpdateProfile={this.handleUpdateProfile}
 
-                {result_message}
+                    />
 
-                <br/>
-                <Button color="blue">
-                    <Link to={"/profile/" + this.props.match.params.username}>Go to My Profile</Link>
+                    {result_message}
+
+                    <br />
+                    <Button color="blue">
+                        <Link to={"/profile/" + this.props.match.params.username}>Go to My Profile</Link>
                     </Button>
-                <br />
-                <br/>
-                <Button color="red" onClick={this.handleDeleteProfile}><Link to="/">Delete Profile</Link></Button>
-
+                    <br />
+                    <br />
+                    <Button color="red" onClick={this.handleDeleteProfile}><Link to="/">Delete Profile</Link></Button>
+                </div>
             </div >
 
         );
