@@ -1,13 +1,12 @@
 import React from "react";
-// import Menu from "../menu/Menu";
 import { Segment } from 'semantic-ui-react'
-import { Button } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 import Menu from "../components/menu/Menu";
 import { userIsAuthenticated } from "../redux/HOCs";
 import { withAsyncAction } from "../redux/HOCs"
 import { Link } from 'react-router-dom';
 import UpdateProfileForm from '../components/updateProfileForm/UpdateProfileForm'
-
+import "../index.css";
 import FetchService from "../FetchService";
 
 class UpdateProfile extends React.Component {
@@ -96,9 +95,9 @@ class UpdateProfile extends React.Component {
 
     handleDeleteProfile = (event) => {
         let token = JSON.parse(localStorage.getItem('login')).result.token;
-       
+
         this.props.logout()
-        .then(this.client.deleteUser(this.state.user.username, token))
+            .then(this.client.deleteUser(this.state.user.username, token))
     }
 
 
@@ -110,20 +109,25 @@ class UpdateProfile extends React.Component {
             result_message =
                 (
                     <div>
+                        <Message negative>
                         <p style={{ color: "red" }}>  Your data is incorrect. Plase try again.
          <br></br>
          Details: {"Details: " + this.state.error}
                         </p>
+                        </Message>
 
                     </div>
                 )
         } else if (this.state.updated && this.state.error === "") {
             result_message = (
 
+                
                 <div>
-                    <p style={{ color: "blue" }}> You successfully updated your profile! </p>
-
+                    <Message positive>
+                    <p style={{ color: "green" }}> You successfully updated your profile! </p>
+                    </Message>
                 </div>
+                
             )
         }
 
@@ -131,25 +135,30 @@ class UpdateProfile extends React.Component {
         return (
             <div className="UpdateProfile">
 
-
                 <Menu isAuthenticated={this.props.isAuthenticated} />
-                <h2>My Profile</h2>
-                <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
-
-                <UpdateProfileForm
-                    formData={this.state.formData}
-                    handleChange={this.handleChange}
-                    handleUpdateProfile={this.handleUpdateProfile}
-
-                />
-
-                {result_message}
+                <div className="updateProfileClass">
+                {/* <br /> */}
+                    <h2>Update My Profile</h2>
+                    <h3> {this.state.user.username + "  ||  " + this.state.user.displayName}</h3>
 
 
-                <Link to={"/profile/" + this.props.match.params.username}>Go to My Profile</Link>
-                <br />
-                <Button onClick={this.handleDeleteProfile}><Link to="/">Delete Profile</Link></Button>
+                    <UpdateProfileForm
+                        formData={this.state.formData}
+                        handleChange={this.handleChange}
+                        handleUpdateProfile={this.handleUpdateProfile}
 
+                    />
+
+                    {result_message}
+
+                    <br />
+                    <Button color="blue">
+                        <Link to={"/profile/" + this.props.match.params.username}>Go to My Profile</Link>
+                    </Button>
+                    <br />
+                    <br />
+                    <Button color="red" onClick={this.handleDeleteProfile}><Link to="/">Delete Profile</Link></Button>
+                </div>
             </div >
 
         );

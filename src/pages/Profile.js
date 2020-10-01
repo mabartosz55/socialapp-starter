@@ -6,7 +6,11 @@ import WebcameCapture from "../components/webcame/WebcameCapture"
 import { Segment } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import NoPhoto from "../components/images/Nophoto.png"
+
 import { userIsAuthenticated } from "../redux/HOCs";
+import "../index.css";
+import NoPicture from "../images/Noimage.png";
 
 //import Webcam from 'webcam-easy';
 
@@ -44,7 +48,6 @@ class Profile extends React.Component {
   }
 
   handleSubmitPhoto = (event) => {
-    console.log("HI!!!")
     event.preventDefault()
     let formData = this.fileUpload(this.state.picture)
     this.client.setUserPicture(this.state.user.username, formData).then(() => {
@@ -94,7 +97,7 @@ class Profile extends React.Component {
 
   }
 
-  
+
   onFileChange = (event) => {
     let pictureFile;
     console.log(event.target.files)
@@ -130,7 +133,8 @@ class Profile extends React.Component {
     else {
       return (
         <div>
-          <img src='https://www.pngitem.com/pimgs/m/35-350426_profile-icon-png-default-profile-picture-png-transparent.png'
+
+          <img src={NoPhoto}
             height='200 px'
             width='200 px'
           />
@@ -144,53 +148,79 @@ class Profile extends React.Component {
     return (
       <div className="Profile">
         <Menu isAuthenticated={this.props.isAuthenticated} />
-        <h2>My Profile</h2>
-        <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
 
+
+        <Segment textAlign="center">
+          <h2>My Current Profile</h2>
+          <h3> {this.state.user.username + "  ||    " + this.state.user.displayName}</h3>
+
+        </Segment>
 
         <Segment>
 
           {this.pictureFile()}
 
+          <WebcameCapture
+            handleSubmitCameraPhoto={this.handleSubmitCameraPhoto}
+            fileUpload={this.fileUpload}
+            handlechangecamera={this.handlechangecamera} />
+
+
+
         </Segment>
-
-
-        <WebcameCapture 
-        handleSubmitCameraPhoto={this.handleSubmitCameraPhoto} 
-        fileUpload={this.fileUpload}  
-        handlechangecamera ={this.handlechangecamera} />
-
-
-
-        
         <form onSubmit={this.handleSubmitPhoto}>
 
-          <input
 
+          <input
             name="picture"
             type="file"
             accept="image/png, image/jpeg, image/gif"
             onChange={this.onFileChange}
           />
-          <button >Save Change</button>
+         
         </form>
 
+       
 
-        <hr />
-        <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
-          <Button content='Update My Info' primary />
-        </Link>
-        <hr />
 
-        <p> Display Name:  {"@" + this.state.user.displayName}</p>
-        <p> Useername:  {this.state.user.username}</p>
-        <p> About:  {this.state.user.about}</p>
-        <p> Profile created:  {this.state.user.createdAt}</p>
-        <p> Profile updated:  {this.state.user.updatedAt}</p>
-        <p> ImagePath:  {this.state.user.pictureLocation}</p>
 
-      </div>
+          <hr />
+         
 
+         
+
+          <Button onClick={this.handleSubmitPhoto} inverted color='orange'   >Save Change</Button>
+
+
+          <hr />
+          <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
+            <Segment inverted>
+
+              <Button inverted color='red'> Update My Info</Button>
+
+            </Segment>
+          </Link>
+
+          <Segment textAlign="left" >
+
+            <div className="cardClass">
+              <p color="red"><strong>Display Name:</strong>   {"  " + this.state.user.displayName}</p>
+              <p> <strong>Username:</strong>  {this.state.user.username}</p>
+            </div>
+            <div className="cardClass">
+              <p><strong>About:</strong>   {this.state.user.about}</p>
+            </div>
+            <div className="cardClass">
+              <p> <strong>Profile created:</strong>  {this.state.user.createdAt.toString().replace('T', ' at ').slice(0, 19)}</p>
+              <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt.toString().replace('T', ' at ').slice(0, 19)}</p>
+            </div>
+
+
+          </Segment>
+          
+
+
+</div>
 
     );
   }

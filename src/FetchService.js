@@ -79,9 +79,9 @@ class FetchService {
 
 
     //=====GetMessageS======================================
-    getMessages() {
+    getMessages(messagecount) {
         let endpoint = "/messages";
-        let messagecount = 80;
+        // let messagecount = 80;
         let URL = this.domain + endpoint + "?limit=" + messagecount;
         return fetch(URL).then(response => response.json())
     }
@@ -97,9 +97,9 @@ class FetchService {
     }
 
     //=====GetUsers======================================
-    getUsers() {
+    getUsers(userCount) {
         let endpoint = "/users"
-        let userCount = 100
+        // let userCount = 100
         let URL = this.domain + endpoint + "?limit=" + userCount
         return fetch(URL).then(response => response.json())
     }
