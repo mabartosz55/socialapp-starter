@@ -5,9 +5,15 @@ import UserItem from '../userItem/UserItem'
 import { List} from 'semantic-ui-react'
 import { displayName } from 'react-spinkit'
 
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 class UserList extends React.Component {
+
+    dataLength=this.props.users.length;
+
+   
     render() {
+        console.log("num of members: " + dataLength);
         return (
             <div className='auto_scroll'>
             <List className='UserList' size='massive' color='green'>{this.props.users.map((userObj, i) => {
