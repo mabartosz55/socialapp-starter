@@ -2,7 +2,7 @@ import React from "react";
 //import React, { Component } from 'react'
 import Menu from "../components/menu/Menu";
 import FetchService from "../FetchService";
-// import Noimage from "../components/images/Noimage"
+import NoPhoto from "../components/images/Nophoto.png"
 
 import { Segment } from 'semantic-ui-react';
 import { Card } from 'semantic-ui-react';
@@ -95,7 +95,8 @@ class Profile extends React.Component {
     } else {
       return (
         <div>
-          <img src={NoPicture}
+
+          <img src={NoPhoto}
             height='200 px'
             width='200 px'
           />

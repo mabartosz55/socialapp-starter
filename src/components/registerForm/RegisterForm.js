@@ -2,7 +2,7 @@ import React from "react";
 // import Spinner from "react-spinkit";
 // import { withAsyncAction } from "../../redux/HOCs";
 import "./RegisterForm.css";
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Message } from 'semantic-ui-react';
 import FetchService from "../../FetchService"
 
 class RegisterForm extends React.Component {
@@ -57,20 +57,25 @@ class RegisterForm extends React.Component {
         if (!this.state.submitted && this.state.error !== "") {
             result_message =
                 (<div>
-                    <p style={{ color: "red" }}>  Your registration data is incorrect. Plase try again.
-         <br></br>
+                    <Message negative>
+                        <p style={{ color: "red" }}>  Your registration data is incorrect. Plase try again.
+                <br></br>
+
          Details: {"Your registration data is incorrect. " + this.state.error}
-                    </p>
+                        </p>
+                    </Message>
 
                 </div>)
 
         } else if (this.state.submitted && this.state.error === "") {
             result_message =
                 (
-                    <div>
-                        <p style={{ color: "blue" }}> Thank you for registration! </p>
+                    <Message positive>
+                        <div>
+                            <p style={{ color: "green" }}> Thank you for registration! </p>
 
-                    </div>
+                        </div>
+                    </Message>
                 )
 
         }
@@ -80,43 +85,43 @@ class RegisterForm extends React.Component {
                 {/* //======================= */}
                 <Form>
                     <Form.Field required>
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        autoFocus
-                        required
-                        onChange={this.handleChange}
-                    />
+                        <label>Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            autoFocus
+                            required
+                            onChange={this.handleChange}
+                        />
                     </Form.Field>
 
                     <Form.Field required>
-                    <label>Display Name</label>
-                    <input
-                        type="text"
-                        name="displayName"
-                        required
-                        onChange={this.handleChange}
-                    />
+                        <label>Display Name</label>
+                        <input
+                            type="text"
+                            name="displayName"
+                            required
+                            onChange={this.handleChange}
+                        />
                     </Form.Field>
 
-                    <Form.Field required>           
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        required
-                        onChange={this.handleChange}
-                    />
+                    <Form.Field required>
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            required
+                            onChange={this.handleChange}
+                        />
                     </Form.Field>
 
-                    <br/>
-                    <Button color="teal"type="submit" onClick={this.handleRegister}>
+                    <br />
+                    <Button color="teal" type="submit" onClick={this.handleRegister}>
                         Click to Register
                     </Button >
                 </Form>
 
-                
+
                 {result_message}
 
             </div>
