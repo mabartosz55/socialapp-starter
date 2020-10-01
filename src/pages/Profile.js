@@ -29,7 +29,6 @@ class Profile extends React.Component {
       "statusCode": "",
       picture: null
 
-
     }
 
   }
@@ -59,23 +58,43 @@ class Profile extends React.Component {
       })
     })
   }
-  // handleSubmitCameraPhoto = (event) => {
-  //   console.log("HI!!!")
-  //   event.preventDefault()
-  //   let formData = this.fileUpload(this.state.picture)
-  //   this.client.setUserPicture(this.state.user.username, formData).then(() => {
-  //     this.client.getUser(this.props.match.params.username).then((userData) => {
-  //       this.setState({
-  //         user: userData.user,
-  //         statusCode: userData.statusCode,
-  //         pictureLocation: userData.user.canvasElement
 
-  //       })
-  //     })
-  //   })
-  // }
+  handleSubmitCameraPhoto = (event) => {
+    console.log("HI!!!")
+    event.preventDefault()
+    let formData = this.fileUpload(this.state.picture)
+    this.client.setUserPicture(this.state.user.username, formData).then(() => {
+      this.client.getUser(this.props.match.params.username).then((userData) => {
+        this.setState({
+          user: userData.user,
+          statusCode: userData.statusCode,
+          pictureLocation: userData.user.pictureLocation
 
-  //On file select (button Choose File)
+        })
+      })
+    })
+  }
+  handlechangecamera = (imageSrc) => {
+    fetch(imageSrc)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], "File name", { type: "image/png" })
+        console.log(file)
+        this.setState(
+          {
+            picture: file
+
+          }
+        )
+
+
+      })
+
+
+
+  }
+
+  
   onFileChange = (event) => {
     let pictureFile;
     console.log(event.target.files)
@@ -107,7 +126,7 @@ class Profile extends React.Component {
           />
         </div>
       )
-    } 
+    }
     else {
       return (
         <div>
@@ -136,13 +155,15 @@ class Profile extends React.Component {
         </Segment>
 
 
-<WebcameCapture/>
+        <WebcameCapture 
+        handleSubmitCameraPhoto={this.handleSubmitCameraPhoto} 
+        fileUpload={this.fileUpload}  
+        handlechangecamera ={this.handlechangecamera} />
 
 
 
-{/*         
-       <button onclick ={this.WebcamCapture}>Camera </button>  */}
-        <form onSubmit={this.handleSubmitPhoto }>
+        
+        <form onSubmit={this.handleSubmitPhoto}>
 
           <input
 
@@ -153,25 +174,13 @@ class Profile extends React.Component {
           />
           <button >Save Change</button>
         </form>
-        
-        
-        <hr/>
+
+
+        <hr />
         <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
           <Button content='Update My Info' primary />
         </Link>
-<hr/>
-
-
-
-
-
-{/* <Button color ="blue" onClick={this.webcame}> Take photo</Button>
-        <video id="webcam" autoplay playsinline width="200" height="200"></video>
-        <canvas id="canvas" class="d-none"></canvas> 
-        <hr/>
-        <button onClick={this.handleSubmitCameraPhoto}>Save from camera </button> */}
-
-
+        <hr />
 
         <p> Display Name:  {"@" + this.state.user.displayName}</p>
         <p> Useername:  {this.state.user.username}</p>

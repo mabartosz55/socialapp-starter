@@ -2,52 +2,49 @@ import React from "react";
 import Webcam from "react-webcam";
 
 
-function WebcameCapture (props)  {
- 
-    const webcamRef = React.useRef(null);
-    const [imgSrc, setImgSrc] = React.useState(null);
+function WebcameCapture(props) {
 
-    const capture = React.useCallback(() => {
-      const imageSrc = webcamRef.current.getScreenshot();
-      //console.log(imageSrc)
-      setImgSrc(imageSrc);
-      
-fetch(imageSrc)
-  .then(res => res.blob())
-  .then(blob => {
-    const file = new File([blob], "File name",{ type: "image/png" })
-    console.log(file)
+  
+  const webcamRef = React.useRef(null);
+  const [imgSrc, setImgSrc] = React.useState(null);
 
-  })
-    }, [webcamRef, setImgSrc]);
-
+  const capture = React.useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    //console.log(imageSrc)
+    setImgSrc(imageSrc);
+    props.handlechangecamera(imageSrc)
     
-    return (
-      <>
-        <Webcam
-          audio={false}
-          height={200}
-          ref={webcamRef}
-          screenshotFormat="image/png"
-          width={200}
-          //videoConstraints={videoConstraints}
-        />
-         <button onClick={capture}>Capture photo</button> 
-         {imgSrc && (
+    
+    
+  }, [webcamRef, setImgSrc]);
+
+
+  return (
+    <>
+      <Webcam
+        audio={false}
+        height={200}
+        ref={webcamRef}
+        screenshotFormat="image/png"
+        width={200}
+      />
+      <button onClick={capture}>Capture photo</button>
+      <button onClick={props.handleSubmitCameraPhoto}>save came photo</button>
+      {imgSrc && (
         <img
           src={imgSrc}
-          
+
         />
 
-        
+
 
       )}
-      
-      </>
-    );
+
+    </>
+  );
 
 
 
-  };
-  
-  export default WebcameCapture;
+};
+
+export default WebcameCapture;

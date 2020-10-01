@@ -1,7 +1,7 @@
 h1 {
-     color:yellow;
+     color: black;
      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-     background-color: rgb(6, 49, 241);
+    
     
 } 
 p {
@@ -9,7 +9,6 @@ p {
     font-style: oblique;
     font-size: larger;
     font-language-override: initial;
-    background-color: hsl(300, 100%, 88%);
 }
 li{
     font-size: 12pt;
