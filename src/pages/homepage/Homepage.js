@@ -29,7 +29,7 @@ class Homepage extends React.Component {
                     WMC works to ensure that diversity, equality and creativity drives artist engagement
                     with the global music community, and that these values are reflected in laws, licenses,
                     and policies that govern any industry that uses music as raw material for its business.
-                    Code Factory Team aimed to provide a place for artist all over the world to share and communicate
+                    Code Factory Team aimed to provide a place for artists all over the world to share and communicate
                     using their Social App.
                     </p>
 
