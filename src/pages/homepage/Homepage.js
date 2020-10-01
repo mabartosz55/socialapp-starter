@@ -33,7 +33,7 @@ class Homepage extends React.Component {
                     using their Social App.
                     </p>
 
-                    <h1>Codefactory Team:</h1>
+                    <h1>About Code Factory Team:</h1>
                     <div className="team_logo">
                         <div className="Team">
                             <img src={Team} width="600" height="300" />
