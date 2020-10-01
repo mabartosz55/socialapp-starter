@@ -198,7 +198,7 @@ class MessageFeed extends React.Component {
                         <form id="user_message">
 
                             <label htmlFor="textarea">
-                                <strong> Create a Messege:</strong>
+                                <strong> Create a Message:</strong>
                                 <br></br>
 
                                 <textarea

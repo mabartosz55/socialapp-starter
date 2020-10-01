@@ -139,7 +139,7 @@ class UpdateProfile extends React.Component {
                 <div className="updateProfileClass">
                 {/* <br /> */}
                     <h2>Update My Profile</h2>
-                    <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
+                    <h3> {this.state.user.username + "  ||  " + this.state.user.displayName}</h3>
 
 
                     <UpdateProfileForm
