@@ -116,7 +116,7 @@ class Profile extends React.Component {
 
         <Segment textAlign="center">
           <h2>My Current Profile</h2>
-          <h3> {this.state.user.username + "  |  @" + this.state.user.displayName}</h3>
+          <h3> {this.state.user.username + "  ||    " + this.state.user.displayName}</h3>
 
 
           <Segment>
@@ -177,7 +177,7 @@ class Profile extends React.Component {
 
             </Card> */}
             <div className="cardClass">
-              <p color = "red"><strong>Display Name:</strong>   {"@" + this.state.user.displayName}</p>
+              <p color = "red"><strong>Display Name:</strong>   {"  " + this.state.user.displayName}</p>
               <p> <strong>Username:</strong>  {this.state.user.username}</p>
             </div>
             <div className="cardClass">
