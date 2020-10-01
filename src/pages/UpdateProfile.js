@@ -1,6 +1,6 @@
 import React from "react";
 import { Segment } from 'semantic-ui-react'
-import { Button } from 'semantic-ui-react'
+import { Button, Message } from 'semantic-ui-react'
 import Menu from "../components/menu/Menu";
 import { userIsAuthenticated } from "../redux/HOCs";
 import { withAsyncAction } from "../redux/HOCs"
@@ -109,20 +109,25 @@ class UpdateProfile extends React.Component {
             result_message =
                 (
                     <div>
+                        <Message negative>
                         <p style={{ color: "red" }}>  Your data is incorrect. Plase try again.
          <br></br>
          Details: {"Details: " + this.state.error}
                         </p>
+                        </Message>
 
                     </div>
                 )
         } else if (this.state.updated && this.state.error === "") {
             result_message = (
 
+                
                 <div>
-                    <p style={{ color: "blue" }}> You successfully updated your profile! </p>
-
+                    <Message positive>
+                    <p style={{ color: "green" }}> You successfully updated your profile! </p>
+                    </Message>
                 </div>
+                
             )
         }
 
