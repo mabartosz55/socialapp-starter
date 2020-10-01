@@ -4,11 +4,13 @@ import Menu from "../components/menu/Menu";
 import FetchService from "../FetchService";
 import NoPhoto from "../components/images/Nophoto.png"
 
-import { Segment } from 'semantic-ui-react'
-import { Card } from 'semantic-ui-react'
-import { Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Segment } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { userIsAuthenticated } from "../redux/HOCs";
+import "../index.css";
+import NoPicture from "../images/Noimage.png";
 
 
 class Profile extends React.Component {
@@ -85,14 +87,15 @@ class Profile extends React.Component {
       return (
         <div>
           <img src={'https://socialapp-api.herokuapp.com' + this.state.user.pictureLocation}
-            height='350 px'
-            width='350 px'
+            height='200 px'
+            width='200 px'
           />
         </div>
       )
     } else {
       return (
         <div>
+
           <img src={NoPhoto}
             height='200 px'
             width='200 px'
@@ -125,30 +128,23 @@ class Profile extends React.Component {
 
           <form onSubmit={this.handleSubmitPhoto}>
 
-            <Button color= 'blue'>
+            <Button color='blue'>
 
-            <input
-           
+              <input
 
-              name="picture"
-              type="file"
-              accept="image/png, image/jpeg, image/gif"
-              onChange={this.onFileChange}
 
-              
-            />
-</Button>
+                name="picture"
+                type="file"
+                accept="image/png, image/jpeg, image/gif"
+                onChange={this.onFileChange}
+
+
+              />
+            </Button>
             <Button onClick={this.handleSubmitPhoto} inverted color='orange'   >Save Change</Button>
-
-
           </form>
 
-
-
           {/* <Button color="orange" content='Change Photo' primary /> */}
-
-
-
 
           {/* <Button >
 
@@ -159,15 +155,14 @@ class Profile extends React.Component {
           <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
             <Segment inverted>
 
-
-
               <Button inverted color='red'> Update My Info</Button>
 
             </Segment>
-
           </Link>
-          <Segment textAlign="center"  >
-            <Card>
+
+          <Segment textAlign="left" >
+
+            {/* <Card margin-left = "50px">
               <p><strong>Display Name:</strong>   {"@" + this.state.user.displayName}</p>
               <p> <strong>Username:</strong>  {this.state.user.username}</p>
             </Card>
@@ -180,7 +175,19 @@ class Profile extends React.Component {
               <p> <strong>Profile created:</strong>  {this.state.user.createdAt}</p>
               <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt}</p>
 
-            </Card>
+            </Card> */}
+            <div className="cardClass">
+              <p color = "red"><strong>Display Name:</strong>   {"@" + this.state.user.displayName}</p>
+              <p> <strong>Username:</strong>  {this.state.user.username}</p>
+            </div>
+            <div className="cardClass">
+            <p><strong>About:</strong>   {this.state.user.about}</p>
+            </div>
+            <div className="cardClass">
+            <p> <strong>Profile created:</strong>  {this.state.user.createdAt.toString().replace('T',' at ').slice(0, 19)}</p>
+            <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt.toString().replace('T',' at ').slice(0, 19)}</p>
+            </div>
+
 
           </Segment>
 
