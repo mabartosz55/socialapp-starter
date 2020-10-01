@@ -2,12 +2,13 @@ import React from "react";
 //import React, { Component } from 'react'
 import Menu from "../components/menu/Menu";
 import FetchService from "../FetchService";
-
+import WebcameCapture from "../components/webcame/WebcameCapture"
 import { Segment } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { userIsAuthenticated } from "../redux/HOCs";
-import Webcam from 'webcam-easy';
+
+//import Webcam from 'webcam-easy';
 
 
 class Profile extends React.Component {
@@ -30,7 +31,6 @@ class Profile extends React.Component {
 
 
     }
-
 
   }
   componentDidMount() {
@@ -59,21 +59,21 @@ class Profile extends React.Component {
       })
     })
   }
-  handleSubmitCameraPhoto = (event) => {
-    console.log("HI!!!")
-    event.preventDefault()
-    let formData = this.fileUpload(this.state.picture)
-    this.client.setUserPicture(this.state.user.username, formData).then(() => {
-      this.client.getUser(this.props.match.params.username).then((userData) => {
-        this.setState({
-          user: userData.user,
-          statusCode: userData.statusCode,
-          pictureLocation: userData.user.canvasElement
+  // handleSubmitCameraPhoto = (event) => {
+  //   console.log("HI!!!")
+  //   event.preventDefault()
+  //   let formData = this.fileUpload(this.state.picture)
+  //   this.client.setUserPicture(this.state.user.username, formData).then(() => {
+  //     this.client.getUser(this.props.match.params.username).then((userData) => {
+  //       this.setState({
+  //         user: userData.user,
+  //         statusCode: userData.statusCode,
+  //         pictureLocation: userData.user.canvasElement
 
-        })
-      })
-    })
-  }
+  //       })
+  //     })
+  //   })
+  // }
 
   //On file select (button Choose File)
   onFileChange = (event) => {
@@ -121,30 +121,6 @@ class Profile extends React.Component {
     }
   }
 
-  webcame = () => {
-    const webcamElement = document.getElementById('webcam');
-    const canvasElement = document.getElementById('canvas');
-    const webcam = new Webcam(webcamElement, 'user', canvasElement);
-    webcam.start()
-      .then(result => {
-        console.log("webcam started");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    let picture = webcam.snap();
-
-    console.log(picture.toBlob())
-    //this.fileUpload(picture)
-    this.setState({picture:picture})
-    //document.querySelector('#download-photo').href = picture;
-    
-   // webcam.stop()
-   // return picture
-  }
-
-
-
   render() {
     return (
       <div className="Profile">
@@ -160,7 +136,13 @@ class Profile extends React.Component {
         </Segment>
 
 
-        <form onSubmit={this.handleSubmitPhoto +this.handleSubmitCameraPhoto}>
+<WebcameCapture/>
+
+
+
+{/*         
+       <button onclick ={this.WebcamCapture}>Camera </button>  */}
+        <form onSubmit={this.handleSubmitPhoto }>
 
           <input
 
@@ -169,20 +151,25 @@ class Profile extends React.Component {
             accept="image/png, image/jpeg, image/gif"
             onChange={this.onFileChange}
           />
-          <button onClick={this.handleSubmitPhoto}>Save Change</button>
+          <button >Save Change</button>
         </form>
-
+        
         
         <hr/>
         <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
           <Button content='Update My Info' primary />
         </Link>
 <hr/>
-<Button color ="blue" onClick={this.webcame}> Take photo</Button>
+
+
+
+
+
+{/* <Button color ="blue" onClick={this.webcame}> Take photo</Button>
         <video id="webcam" autoplay playsinline width="200" height="200"></video>
         <canvas id="canvas" class="d-none"></canvas> 
         <hr/>
-        <button onClick={this.handleSubmitCameraPhoto}>Save from camera </button>
+        <button onClick={this.handleSubmitCameraPhoto}>Save from camera </button> */}
 
 
 
@@ -194,6 +181,8 @@ class Profile extends React.Component {
         <p> ImagePath:  {this.state.user.pictureLocation}</p>
 
       </div>
+
+
     );
   }
 }
