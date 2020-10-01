@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Image } from 'semantic-ui-react'
 // import Globe from '../../images/Globe.png'
-import Globe from "../images/Globe.png"
+import Globe from "../images/Globe01icon.png"
 import { render } from 'react-dom'
 import moment from 'moment'
 

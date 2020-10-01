@@ -13,3 +13,8 @@ li{
     font-size: 12pt;
 
 }
+
+.team_logo {
+    border: 3px lightslategrey;
+    margin: auto;
+  }

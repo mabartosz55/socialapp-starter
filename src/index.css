@@ -25,6 +25,16 @@ code {
   overflow:auto;
 }
 
+.auto_scroll_users {
+  margin: auto;
+  width: 75vw;
+  height: 60vh;
+  border: 6px solid lightslategrey;
+  border-radius: 6px;
+  padding: 10px;
+  overflow:auto;
+}
+
 .MessageItem {
   margin: 5px 0 5px 10px;
   /* border-bottom:  1px solid lightslategrey; */
@@ -79,3 +89,12 @@ h1.MeetMembers{
   padding: 40px 50px 2px 50px;
   /* border: 1px solid red; */
 }
+
+.home, .MessageFeed, .Profile, .UpdateProfile, .UserFeed  {
+  margin: 0 50px 0 50px;
+}
+.team_logo {
+  
+  padding: 0 0 0 150px;
+}
+
