@@ -1,10 +1,12 @@
 import React from "react";
 import Webcam from "react-webcam";
+import "../../index.css";
+import { Button } from 'semantic-ui-react';
 
 
 function WebcameCapture(props) {
 
-  
+
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
 
@@ -13,33 +15,47 @@ function WebcameCapture(props) {
     //console.log(imageSrc)
     setImgSrc(imageSrc);
     props.handlechangecamera(imageSrc)
-    
-    
-    
+
+
+
   }, [webcamRef, setImgSrc]);
 
 
   return (
     <>
-      <Webcam
-        audio={false}
-        height={200}
-        ref={webcamRef}
-        screenshotFormat="image/png"
-        width={200}
-      />
-      <button onClick={capture}>Capture photo</button>
-      <button onClick={props.handleSubmitCameraPhoto}>save came photo</button>
-      {imgSrc && (
-        <img
-          src={imgSrc}
+      <div className="webcam">
+        
+        <div>
+       
+          <Webcam
+            audio={false}
+            height={200}
+            ref={webcamRef}
+            screenshotFormat="image/png"
+            width={200}
+          />
+<br />
 
-        />
+        </div>
+
+        <div>
+        <Button color="red" onClick={capture}>Capture photo</Button>
+        
+        <Button color="blue" onClick={props.handleSubmitCameraPhoto}>Save camera photo</Button>
+        </div>
+
+        <div>
+        {imgSrc && (
+          <img
+            src={imgSrc}
+
+          />
 
 
 
-      )}
-
+        )}
+        </div>
+      </div>
     </>
   );
 
