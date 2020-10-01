@@ -90,10 +90,7 @@ class Profile extends React.Component {
           }
         )
 
-
       })
-
-
 
   }
 
@@ -157,70 +154,66 @@ class Profile extends React.Component {
         </Segment>
 
         <Segment>
+          <div className="Profile_info">
+            <div>
+              {this.pictureFile()}
+            </div>
 
-          {this.pictureFile()}
+            <div>
+              <div className="cardClass">
+                <p color="red"><strong>Display Name:</strong>   {"  " + this.state.user.displayName}</p>
+                <p> <strong>Username:</strong>  {this.state.user.username}</p>
+              </div>
+              <div className="cardClass">
+                <p><strong>About:</strong>   {this.state.user.about}</p>
+              </div>
+              <div className="cardClass">
+                <p> <strong>Profile created:</strong>  {this.state.user.createdAt.toString().replace('T', ' at ').slice(0, 19)}</p>
+                <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt.toString().replace('T', ' at ').slice(0, 19)}</p>
+              </div>
 
+
+              <form onSubmit={this.handleSubmitPhoto}>
+
+
+                <input
+                  name="picture"
+                  type="file"
+                  accept="image/png, image/jpeg, image/gif"
+                  onChange={this.onFileChange}
+                />
+
+              </form>
+
+              <hr />
+
+              <Button onClick={this.handleSubmitPhoto} inverted color='red'   >Save Picture</Button>
+
+              <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
+               
+                  <Button inverted color='red'> Go to Update Profile</Button>
+               
+              </Link>
+
+            </div>
+
+          </div>
+          
+        </Segment>
+
+
+
+        <Segment textAlign="center">
+        <h3>WEB Camera</h3>
           <WebcameCapture
+         
             handleSubmitCameraPhoto={this.handleSubmitCameraPhoto}
             fileUpload={this.fileUpload}
             handlechangecamera={this.handlechangecamera} />
 
-
-
         </Segment>
-        <form onSubmit={this.handleSubmitPhoto}>
-
-
-          <input
-            name="picture"
-            type="file"
-            accept="image/png, image/jpeg, image/gif"
-            onChange={this.onFileChange}
-          />
-         
-        </form>
-
        
-
-
-
-          <hr />
-         
-
-         
-
-          <Button onClick={this.handleSubmitPhoto} inverted color='orange'   >Save Change</Button>
-
-
-          <hr />
-          <Link to={"/profile/updateprofile/" + this.props.match.params.username}>
-            <Segment inverted>
-
-              <Button inverted color='red'> Update My Info</Button>
-
-            </Segment>
-          </Link>
-
-          <Segment textAlign="left" >
-
-            <div className="cardClass">
-              <p color="red"><strong>Display Name:</strong>   {"  " + this.state.user.displayName}</p>
-              <p> <strong>Username:</strong>  {this.state.user.username}</p>
-            </div>
-            <div className="cardClass">
-              <p><strong>About:</strong>   {this.state.user.about}</p>
-            </div>
-            <div className="cardClass">
-              <p> <strong>Profile created:</strong>  {this.state.user.createdAt.toString().replace('T', ' at ').slice(0, 19)}</p>
-              <p> <strong> Profile updated:</strong>  {this.state.user.updatedAt.toString().replace('T', ' at ').slice(0, 19)}</p>
-            </div>
-
-
-          </Segment>
-          
-
-
-</div>
+      </div>
 
     );
   }
