@@ -237,3 +237,6 @@ class MessageFeed extends React.Component {
 }
 
 export default userIsAuthenticated(MessageFeed);
+
+// PM: remove unused imports, remove console log testing
+// Consider refactoring user message form into a sub-component

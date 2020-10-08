@@ -35,3 +35,5 @@ class MessageBestTen extends React.Component {
 }
 
 export default MessageBestTen
+
+// PM: think about using a component from your component library instead of a div here

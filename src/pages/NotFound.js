@@ -31,3 +31,5 @@ class NotFound extends React.Component {
 }
 
 export default userIsAuthenticated(NotFound);
+
+// PM: remove comments and unused imports

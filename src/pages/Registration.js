@@ -29,3 +29,5 @@ class Registration extends React.Component {
 }
 
 export default Registration;
+
+// PM: Remove unused imports and comments

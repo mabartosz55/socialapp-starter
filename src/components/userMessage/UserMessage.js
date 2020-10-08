@@ -82,3 +82,5 @@ class UserMessage extends React.Component {
     }
 }
 export default UserMessage
+
+// PM: think about using a component from your component library instead of a div here
