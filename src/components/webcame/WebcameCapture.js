@@ -64,3 +64,5 @@ function WebcameCapture(props) {
 };
 
 export default WebcameCapture;
+
+// PM: Needs lots of formatting, need to stop camera after picture is taken

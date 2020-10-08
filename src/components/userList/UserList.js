@@ -35,3 +35,5 @@ class UserList extends React.Component {
 export default UserList;
 
 
+// PM: think about using a component from your component library instead of a div here
+// remove unused imports and comments

@@ -74,3 +74,5 @@ class UserMessage extends React.Component {
     }
 }
 export default UserMessage
+
+// PM: delete unused copy file

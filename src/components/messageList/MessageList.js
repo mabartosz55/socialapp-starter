@@ -37,3 +37,5 @@ class MessageList extends React.Component {
 }
 
 export default MessageList
+
+// PM: think about using a component from your component library instead of a div here

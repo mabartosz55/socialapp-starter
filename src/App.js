@@ -73,3 +73,9 @@ class App extends React.Component {
 }
 
 export default App;
+
+// PM: remove extra spaces between imports line 10 to 16
+// Overall project structure: Consider refactoring homepage directory,
+// move homepage images to the images directory, move the css to index.css.
+// Consider combining some pages, maybe combine signin and register or 
+// messagefeed and userfeed. Remove .bash_profile file from git repo

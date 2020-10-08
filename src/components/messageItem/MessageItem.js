@@ -33,3 +33,4 @@ function MessageItem(props) {
 }
 export default MessageItem;
 
+// PM: think about using a component from your component library instead of a div here

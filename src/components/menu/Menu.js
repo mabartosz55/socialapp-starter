@@ -79,3 +79,6 @@ class Menu extends React.Component {
 }
 // export default ("auth", "logout")(Menu);
 export default withAsyncAction("auth", "logout")(Menu);
+
+// PM: remove unusued import and commented lines. Remove unneccessary
+// globe picture, Globe_01.png is not used. Put all images in images dir.
